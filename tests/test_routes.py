@@ -126,7 +126,7 @@ class TestAccountService(TestCase):
     # ADD YOUR TEST CASES HERE ...
     def test_get_account_list(self):
         """It should Get a list of Accounts"""
-        accounts = self._create_accounts(5)
+        self._create_accounts(5)
         response = self.client.get(BASE_URL)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.get_json()
@@ -144,7 +144,7 @@ class TestAccountService(TestCase):
 
     def test_account_not_found(self):
         """It should fail to read an existing Account"""
-        account = self._create_accounts(1)[0]
+        self._create_accounts(1)[0]
         response = self.client.get(
             f"{BASE_URL}/0", content_type="application/json"
         )
@@ -194,7 +194,7 @@ class TestAccountService(TestCase):
 
     def test_delete_account_not_found(self):
         """It should attemtpt to delete a non-existing Account"""
-        account = self._create_accounts(1)[0]
+        self._create_accounts(1)[0]
         response = self.client.delete(
             f"{BASE_URL}/0"
         )
